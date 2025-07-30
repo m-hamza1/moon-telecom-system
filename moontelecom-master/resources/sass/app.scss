@@ -1,0 +1,1761 @@
+@import "partials/toastr";
+@import "partials/variables_and_mixins";
+
+body{
+    font-family: 'Muli', sans-serif;
+    //font-size: 16px;
+    font-size: 16px;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    background: #f6f6f6;
+}
+*{
+    box-sizing: border-box;
+}
+*:before, *:after{
+    box-sizing: border-box;
+}
+a:visited{
+    text-decoration: none; 
+    // color:$neutral;
+}
+.mt-2{
+    margin-top: 20px;
+}
+.mt-4{
+    margin-top: 40px;
+}
+
+
+// *************************
+// Elements
+// *******************
+// *****
+.btn{
+    background: $primary-color;
+    color:$white;
+    font-size: 0.8em;
+    @include round-border;
+    padding: gap(1) gap(2);
+    border: none;
+    //min-width: 150px;
+    text-align: center;
+    &:hover{
+        cursor: pointer;
+        background: $accent-color;
+    }
+    &:active{
+        background: darken($accent-color, 10%);
+    }
+
+    &.danger{
+        background: red;
+        color: #fff;
+
+        &:hover{
+            background: darken(red,10%);
+        }
+    }
+
+    @media (min-width: 600px){
+        font-size: 1em;
+        padding: gap(1) gap(3);
+    }
+}
+
+
+.error{
+    //color: $danger;
+}
+.success{
+    //color: $success;
+}
+
+.icon{
+    width: 25px;
+    //width: 35px;
+    height: 25px;
+    //height: 35px;
+    fill: $white;
+}
+
+
+a{
+    text-decoration: none;
+}
+
+
+
+input{
+    padding: gap(1.5) gap(1.5) gap(1.5) gap(1.5);
+    //@include light_border;
+    //@include card-border;
+    //margin: gap(0.5);
+    //background: red;
+    font-size: 1.2em;
+    &::placeholder{
+        color: rgba(black,0.3);
+
+    }
+
+}
+select{
+    //@extend input;
+    padding: gap(1) ;
+    @include card_style;
+    font-size: 0.8em;
+    min-width: 150px;
+
+}
+
+
+
+.search-filter-contianer{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    @media (min-width: 700px)  {
+        font-size: 1.2em;
+    }
+}
+
+
+
+
+
+.search-container{
+    align-self: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 0.8em;
+    @include card_style;
+    //margin-bottom: gap(2);
+    &:hover{
+        cursor: pointer;
+
+    }
+
+    .icon{
+        fill: rgba(#000,0.4);
+        cursor: pointer;
+        box-sizing: content-box;
+        padding: gap(1);
+        width: 18px;
+        height: 18px;
+        &:hover{
+            fill: rgba(#000,1);
+        }
+    }
+    input{
+        border: none;
+        outline: none;
+        &:hover{
+            cursor: text;
+        }
+    }
+}
+
+.filters-container{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: gap(2);
+    .filter{
+        margin: gap(0.5) gap(1);
+        //min-width: 200px;
+    }
+}
+
+.bold{
+    font-weight: $font-bold;
+}
+
+
+.success{
+    color: $success;
+}
+.danger{
+    color: $danger;
+}
+.neutral{
+    color: $neutral;
+}
+
+
+//**********************
+//  Dialog
+//**********************
+.dialog{
+    background: $white;
+    @include shadow;
+    position: fixed;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: gap(3) gap(5);
+
+
+    .title{
+        text-align: center;
+        font-size: 2em;
+        font-weight: $font-normal;
+    }
+
+}
+
+
+.main_buttons_container{
+    background: red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: gap(4);
+}
+
+
+
+
+
+
+//************************
+//      Table
+//***********************
+.page_body{
+    //margin-left: gap(6);
+}
+
+.table_container{
+    width: 99%;
+    //margin: gap(10) auto;
+    margin-top: gap(8);
+
+    .table-meta-info{
+        text-align: center;
+        margin: gap(2) auto;
+        display: block;
+        max-width: 1500px;
+        strong{
+            font-size: 1.4em;
+        }
+
+        @media (min-width: 1000px)  {
+            text-align: left;
+
+        }
+
+    }
+
+    .table_header{
+        font-size: 1.1em;
+    }
+
+    table{
+        //background: $white;
+        //@include shadow;
+        //padding: gap(2) ;
+
+        text-align: left;
+        width: 100%;
+
+        thead{
+            display: none;
+            tr{
+                padding: gap(1);
+            }
+        }
+
+        tr{
+            display: flex;
+            flex-direction: column;
+            align-self: center;
+            width: 100%;
+            @include card_style;
+            margin: gap(2) auto;
+            padding-bottom: gap(2);
+            max-width: 340px;
+
+
+            @media (min-width: 600px){
+                max-width: 400px;
+                font-size: 1.1em;
+            }
+        }
+
+        td{
+            display: flex;
+            font-size: 1em;
+            margin: gap(0.2) gap(1);
+            strong{
+                width: 80px;
+                margin-left: gap(2);
+            }
+            span{
+                margin-left: gap(2);
+            }
+
+            &.blocked{
+                color: red;
+                font-size: 1.5em;
+                text-align: center;
+                align-self: center;
+            }
+
+            @media (min-width: 300px)  {
+                strong {
+                    width: 100px;
+                }
+            }
+            @media (min-width: 360px)  {
+                strong {
+                    width: 150px;
+                }
+            }
+            @media (min-width: 600px)  {
+                strong {
+                    width: 200px;
+                }
+            }
+        }
+
+
+
+        .state{
+            order: -1;
+            display: inline-flex;
+            //align-self: flex-start;
+            //padding: gap(2);
+        }
+        .icons-container{
+            width: 100%;
+            align-self: flex-end;
+            order: -1;
+            display: inline-flex;
+            justify-content: flex-end;
+            .icon  {
+                fill: $primary-color ;
+                opacity: 0.7;
+                padding: gap(0.5);
+                margin: gap(0.5) ;
+                box-sizing: content-box;
+                width: 20px;
+                height: 20px;
+
+
+                &:hover{
+                    opacity: 1;
+                    &.danger{
+                        fill: $danger;
+                    }
+
+                }
+            }
+
+            .state{
+                margin-left: gap(1);
+            }
+        }
+
+
+
+        @media (min-width: 1000px)  {
+
+            thead{
+                display: block;
+                box-shadow: none;
+                font-size: 1.1em;
+                margin-top: gap(1);
+            }
+
+            tr{
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                text-align: left;
+                font-size: 0.8em;
+                margin: gap(0.5) auto;
+                padding: 0;
+                //align-self: center;
+                width: 100%;
+                box-shadow: none;
+                //@include card_style;
+                //margin: gap(2) auto;
+                //padding-bottom: gap(2);
+                max-width: 100%;
+
+                &.blocked{
+                    background: rgba(red,0.8);
+                    color: white;
+
+                    .success, .danger, .neutral{
+                        color: white;
+                    }
+                    .icon{
+                        fill: white;
+                    }
+                }
+            }
+
+            th,td{
+                min-width: 9.5%;
+                text-align: left;
+                margin: gap(0.1);
+                word-wrap: break-word;
+                //hyphens: auto;
+                //padding: 0;
+                &.username{
+                    word-break: break-all;
+                }
+                &.blocked{
+                    display: none;
+
+                }
+                &.hide-column{
+                    display: none;
+                }
+
+                &.number-column{
+                    min-width: 7%;
+
+                }
+                strong{
+                    display: none;
+                    width: auto;
+                }
+                span{
+                    margin-left: 0;
+                }
+            }
+            .icons-container{
+                order: 2;
+                min-width: auto;
+                flex-direction: row;
+                justify-content: center;
+                padding: 0;
+                .icon{
+                    padding: gap(0.5);
+                }
+            }
+        }
+
+        @media (min-width: 1300px)  {
+
+            tr{
+                font-size: 1em;
+                padding: gap(1);
+                max-width: 1500px;
+                margin: gap(0.5) auto;
+
+            }
+
+        }
+
+    }
+
+
+
+    &.recoveries{
+        th,td{
+
+            strong{
+                width: 80px;
+                margin-left: gap(2);
+            }
+            span{
+                margin-left: gap(2);
+            }
+        }
+
+
+        .icons-container{
+        }
+
+
+        @media (min-width: 600px)  {
+            th,td{
+                strong{
+                    width: 100px;
+                }
+            }
+        }
+
+        @media (min-width: 1000px){
+            tr{
+                margin: gap(0.5) auto;
+            }
+            th,td{
+                width: 10%;
+
+                span{
+                    margin: 0;
+                }
+                &.comments{
+                    width: 40%;
+                }
+            }
+
+            .icons-container{
+                width: 10%;
+                margin-left: auto;
+            }
+
+
+        }
+    }
+
+
+
+    &.users{
+
+
+        tr{
+            padding: gap(2);
+            min-width: 100%;
+            margin: gap(1) auto;
+
+            @media (min-width: 450px )  {
+                min-width: 420px;
+
+            }
+
+        }
+        th,td{
+            strong{
+                max-width: 70px;
+                margin-left: gap(2);
+            }
+            span{
+                margin-left: gap(2);
+                word-break: break-all;
+            }
+        }
+
+
+
+        @media (min-width: 1000px){
+            tr{
+                margin: gap(0.5) auto;
+            }
+            th,td{
+                width: 15%;
+
+                span{
+                    margin: 0;
+                }
+                &.email{
+                    width: 30%;
+                }
+            }
+
+            .icons-container{
+                width: 10%;
+                margin-left: auto;
+            }
+
+
+        }
+    }
+
+    &.packages{
+        margin-top: gap(4);
+        th,td{
+
+            strong{
+                width: 120px;
+                margin-left: gap(2);
+            }
+            span{
+                margin-left: gap(2);
+            }
+        }
+
+
+        .icons-container{
+        }
+
+
+        @media (min-width: 600px)  {
+            th,td{
+                font-size: 1.2em;
+                strong{
+                    width: 180px;
+                }
+            }
+        }
+
+        @media (min-width: 1000px){
+            tr{
+                padding: gap(1);
+            }
+            th,td{
+                width: 20%;
+
+                span{
+                    margin: 0;
+                }
+
+                &.connections{
+                    text-align: center;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+            }
+
+            .icons-container{
+                //width: 100%;
+                margin-left: auto;
+            }
+
+
+        }
+    }
+
+    &.villages{
+        margin-top: gap(4);
+        th,td{
+
+            strong{
+                width: 120px;
+                margin-left: gap(2);
+            }
+            span{
+                margin-left: gap(2);
+            }
+        }
+
+
+        .icons-container{
+        }
+
+
+        @media (min-width: 600px)  {
+            th,td{
+                font-size: 1.2em;
+                strong{
+                    width: 180px;
+                }
+            }
+        }
+
+        @media (min-width: 1000px){
+            tr{
+                padding: gap(1);
+            }
+            th,td{
+                width: 20%;
+
+                span{
+                    margin: 0;
+                }
+
+                &.connections{
+                    text-align: center;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+            }
+
+            .icons-container{
+                //width: 100%;
+                margin-left: auto;
+            }
+
+
+        }
+    }
+    &.bill_recoveries{
+        tr{
+            padding: gap(1);
+        }
+        th,td{
+            strong{
+                width: 50%;
+                margin: 0;
+
+            }
+            span{
+                width: 50%;
+
+            }
+        }
+        @media (min-width: 1000px){
+            tr{
+                padding: gap(0.5);
+            }
+            th{
+                padding: gap(1) ;
+            }
+            th,td{
+                width: 20%;
+
+                span{
+                    margin: 0;
+                }
+
+            }
+
+        }
+    }
+
+
+    &.bills{
+        tr{
+            padding: gap(1);
+        }
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// *************************
+//  Login Form Container
+// ************************
+.login-container{
+    background: $primary-color;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px gap(1) gap(1) gap(1);
+
+
+
+
+    h1{
+        text-align: center;
+        color: $white;
+    }
+
+    .logo img{
+        width: 250px;
+        margin-bottom: gap(1);
+    }
+
+
+
+    form{
+        background: $white;
+        //background: red;
+        @include card-border;
+        padding: gap(1);
+        width: 100%;
+        max-width: 400px;
+        display: flex;
+        flex-direction: column;
+
+        @media (min-width: 320px) {
+                padding: gap(5);
+        }
+    }
+
+    label{
+        display: block;
+        padding:  gap(.5) gap(1);
+    }
+    .input-group{
+        display: flex;
+        flex-direction: column;
+        margin: gap(1) 0;
+    }
+    input{
+        padding: gap(1.5) gap(2);
+        @include card-border;
+        border: 1px solid rgba(black, 0.4);
+        font-size: 1.2em;
+    }
+
+    .btn{
+        width: auto;
+        font-size: 1.1em;
+        display: block;
+        padding: gap(1) gap(3);
+        margin: gap(2) auto;
+        //max-width: 150px;
+    }
+
+    .link{
+        text-align: center;
+    }
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// *************************
+//  Main Navigation
+// ************************
+.main_navigation_container{
+    background: $primary-color;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: gap(2) 0;
+    z-index: 1000;
+    @include shadow;
+    transition: transform 0.3s ease-in;
+    width: 300px;
+    //transform: translateX(10px);
+
+
+    &.collapsed{
+        transform: translateX(-300px);
+
+
+    }
+
+    a{
+        color: $white;
+        font-size: 1em;
+    }
+
+
+
+    //********* Nav Header
+    .nav_logo_container img{
+        height: 80px;
+        margin: 0 auto;
+        display: block;
+    }
+    .nav_logo_container .logo{
+        padding-right: gap(3);
+    }
+
+
+
+    //**************** Nav items
+    .nav_items {
+        list-style: none;
+        padding: 0;
+    }
+    .nav_item{
+        display: flex;
+        align-items: center;
+        padding:  gap(1) gap(2);
+        span{
+            margin-left: gap(2);
+            margin-right: gap(10);
+        }
+
+        &.active{
+            background: rgba(#E3E5ED, 0.3);
+        }
+        &:hover{
+            background: rgba(#E3E5ED, 0.3);
+        }
+        &:active{
+            background: $accent-color;
+        }
+
+    }
+
+
+
+    .nav_close_btn{
+        position: absolute;
+        top: gap(1);
+        left: gap(1);
+        width: 48px;
+        height: 48px;
+        padding: gap(2);
+        fill: $white;
+
+        &:hover{
+            cursor: pointer;
+        }
+        &:active{
+            transform: scale(0.8);
+            fill: $accent-color;
+        }
+
+        @media (min-width: 600px)  {
+            display: none;
+
+        }
+    }
+
+
+    @media (min-width: 1000px) {
+        .nav_item{
+            padding:  gap(1.5) gap(2);
+        }
+    }
+}
+
+
+
+.title_nav_toggle_container{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: gap(1);
+    left: gap(2);
+    transform: translateX(300px);
+    transition: transform 0.3s ease-in;
+
+    &.collapsed{
+        //left: 20px;
+        transform: translateX(0);
+
+    }
+    &:hover{
+        cursor: pointer;
+    }
+
+    .nav_toggler_container{
+        background: $primary-color;
+        padding: gap(1);
+        border-radius: 50%;
+        width: 35px;
+        height: 35px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &:active{
+            background: $accent-color;
+        }
+    }
+    .title{
+        padding-left: gap(1);
+        font-size: 1.4em;
+        font-weight: 800;
+        color: $text-primary-color;
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//**********************
+//   Content Container   TEMP Styles
+//**********************
+
+.page_header{
+    display: flex;
+    justify-content: flex-end;
+
+
+
+}
+
+
+
+.content-container{
+    //background: red;
+    padding: gap(2);
+    min-height: 100vh;
+    width: 100%;
+    //max-width: 1400px;
+    //margin: 0 auto;
+    //background: red;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    box-sizing: border-box;
+    justify-content: flex-start;
+    .page_header{
+        margin-top: gap(7);
+
+        display: flex;
+        justify-content: center;
+        //align-items: flex-end;
+        //justify-content: flex-end;
+        //padding-top: gap(1);
+        width: 100%;
+
+        @media (min-width: 400px)  {
+            margin-top: gap(1);
+            justify-content: flex-end;
+
+        }
+
+    }
+    .page_body{
+        width: 100%;
+
+    }
+    .page_footer{
+    }
+
+
+
+    form{
+        background: $white;
+        @include shadow;
+        padding: gap(3) gap(5);
+        display: block;
+        width: 40%;
+        margin: gap(10) auto;
+        .title{
+            font-size: 2em;
+            display: block;
+            text-align: center;
+            font-weight: $font-normal;
+            margin-bottom: gap(4);
+        }
+        .btn{
+            margin: 0 auto;
+            display: block;
+        }
+        .form_element{
+            display: flex;
+            flex-direction: column;
+            margin: gap(2);
+        }
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//**********************
+//   Create Connections Form
+//**********************
+
+form.create_connection_container{
+    width: 100%;
+    padding: gap(2) gap(2) gap(5) gap(2);
+    @include card_style;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    min-height: 100vh;
+    margin-top: gap(10);
+    font-size: 0.8em;
+
+    input{
+        margin: gap(0.5) 0;
+        width: 100%;
+        border: 1px solid rgba(black,0.2);
+        border-radius: 4px;
+    }
+    .heading{
+        font-size: 1.8em;
+        font-weight: $font-bold;
+        text-align: center;
+
+        @media (min-width: 1000px)  {
+            text-align: left;
+
+        }
+    }
+    .package_detail, .contact_detail{
+        //flex-grow: 1;
+    }
+
+
+
+
+    .form_element_group{
+        display: flex;
+        flex-direction: column;
+    }
+    .form_element{
+        margin: gap(1) 0;
+        justify-content: center;
+        input{
+            padding: gap(1);
+            align-self: flex-start;
+        }
+    }
+
+    .form_element.checkbox{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        input {
+            width: 20px;
+            height: 20px;
+            &:hover{
+                cursor: inherit;
+            }
+        }
+        label{
+            padding-left: gap(2);
+            &::selection{
+                background: none;
+            }
+
+            &:hover{
+                cursor: pointer;
+            }
+        }
+
+        &:hover{
+            cursor: pointer;
+        }
+    }
+
+
+    #billingAddress,#installationAddress{
+        align-self: stretch;
+        margin-right: gap(15);
+    }
+
+    .btn{
+        margin-top: gap(2);
+        align-self: flex-start;
+        display: inline-block;
+        font-size: 1.4em;
+        outline: none;
+    }
+
+
+    .package_detail, .contact_detail{
+        width: 100%;
+
+    }
+
+
+
+    @media(min-width: 400px){
+        max-width: 400px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+    }
+
+    @media (min-width: 650px){
+        max-width: 500px;
+        font-size: 1.2em;
+    }
+
+    @media (min-width: 1000px){
+        font-size: 1em;
+        max-width: 900px;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: flex-start;
+
+        .heading{
+            font-size: 2em;
+            font-weight: $font-normal;
+            //text-align: center;
+
+        }
+        .package_detail, .contact_detail{
+            width: 40%;
+
+
+        }
+
+        .package_detail{
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .btn{
+           font-size: 1em;
+           align-self: flex-end;
+        }
+
+    }
+    @media (min-width: 1200px){
+        max-width: 1100px;
+    }
+}
+
+form.invoice_container{
+    width: 95%;
+    margin: gap(1) auto;
+    font-size: 0.8em;
+    padding: gap(2) gap(2) gap(4) gap(2);
+    //max-width: 320px;
+
+    @media (min-width: 400px){
+        font-size: 1em;
+        margin-top: gap(8);
+        max-width: 420px;
+
+        .title{
+            font-size: 2.2em;
+            //font-weight: bold;
+        }
+
+    }
+
+    .title{
+        margin: gap(2) auto;
+    }
+    .contact_data{
+        margin-bottom: gap(4);
+    }
+    .bill_data{
+        margin-bottom: gap(4);
+    }
+    .data_item{
+        margin-top: gap(1);
+        display: flex;
+        justify-content: space-between;
+        text-align: left;
+
+        strong{
+            width: 60%;
+        }
+        span{
+            width: 40%;
+        }
+
+        @media (min-width: 400px) {
+            strong{
+                width: 50%;
+            }
+            span{
+                width: 50%;
+            }
+        }
+    }
+
+    .form_element{
+        margin: gap(1) auto;
+        input{
+            padding: gap(1);
+            margin: gap(1) 0;
+            border: 1px solid rgba(black, 0.1);
+            border-radius: 4px;
+        }
+    }
+    .btn{
+        margin: gap(2) auto;
+        font-size: 1.2em;
+        width: 100%;
+    }
+    a{
+        margin-top: gap(2);
+        display: block;
+        text-align: center;
+    }
+}
+
+
+
+
+
+
+.connection_detail_container{
+    @include card_style;
+    width: 95%;
+    margin: gap(2) auto;
+    padding: gap(2);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    max-width: 350px;
+    font-size: 0.8em;
+
+    .connection_detail{
+        width: 70%;
+    }
+
+    @media (min-width: 400px){
+        margin-top: gap(8);
+
+    }
+
+    @media (min-width: 600px){
+        max-width: 500px ;
+        font-size: 1em;
+    }
+
+
+    @media (min-width: 720px){
+        max-width: 700px ;
+        padding-bottom: gap(5);
+        flex-direction: row;
+        font-size: 0.8em;
+
+        .bill_detail{
+            width: 35%;
+        }
+        .connection_detail{
+            width: 45%;
+        }
+    }
+    @media (min-width: 1020px )  {
+        max-width: 1000px ;
+        font-size: 1em;
+
+
+
+    }
+
+    .data_item{
+        margin-top: gap(1);
+        display: flex;
+        justify-content: space-between;
+        text-align: left;
+        strong{
+            width: 55%;
+        }
+        span{
+            width: 45%;
+        }
+    }
+
+    .title{
+        font-size: 1.7em;
+        font-weight: $font-normal;
+    }
+    .contact_info{
+        margin-bottom: gap(8);
+    }
+
+    .bill_detail{
+        margin-top: gap(4);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        //width: 30%;
+
+        .bill_summary{
+            @include card_style;
+            padding: gap(1);
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            .title{
+                text-align: center;
+            }
+            .data{
+                width: 100%;
+                margin: gap(1) auto;
+                padding-left: gap(3);
+            }
+            a{
+                margin: gap(1) 0;
+                text-align: center;
+            }
+        }
+
+    }
+
+    .btn{
+        margin: gap(1);
+    }
+    .buttons_container{
+        margin-top: gap(2);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+
+        .btn{
+            width: 100%;
+            margin: gap(0.5);
+        }
+
+    }
+}
+
+td.icons-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// *************************
+//  Dashboard Container
+// ************************
+.meta_info_container{
+    margin-top: gap(8);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+
+
+
+    .card{
+        @include card_style;
+
+        display: block;
+        background: $white;
+        margin: gap(2);
+        padding: gap(2);
+        //width: 45%;
+        color: $text-primary-color;
+        max-width: 400px;
+        min-width: 250px;
+    }
+    .card-body{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .icon{
+            fill: $primary-color;
+            width: 2em;
+            height: 2em;
+            margin: gap(2);
+        }
+
+        .content{
+            display: flex;
+            flex-direction: column;
+            margin: gap(2);
+            text-align: right;
+            .heading{
+                font-size: 0.8em;
+            }
+            .data{
+                font-size: 1.5em;
+            }
+        }
+    }
+    .card-footer{
+        color: rgba($text-primary-color, 0.6);
+        font-size: 0.8em;
+    }
+
+    @media (min-width: 400px){
+        .card{
+            min-width: 350px;
+        }
+        .card-body{
+
+            .icon{
+                width: 3em;
+                height: 3em;
+            }
+
+            .content{
+                .heading{
+                    font-size: 1em;
+                }
+                .data{
+                    font-size: 2em;
+                }
+            }
+        }
+    }
+
+    @media (min-width: 720px) {
+        .card{
+            min-width: 400px;
+        }
+        .card-body{
+            .icon{
+                width: 4em;
+                height: 4em;
+            }
+
+            .content{
+                .heading{
+                    font-size: 1em;
+                }
+                .data{
+                    font-size: 3em;
+                }
+            }
+        }
+    }
+}
+
+
+.circle{
+    display: block;
+    border-radius: 50%;
+    width: 10px;
+    height: 10px;
+
+    &.block{
+        background: red;
+    }
+    &.active{
+        background: green;
+
+    }
+}
+
+
+
+form.dialog{
+    width: 90%;
+    padding: gap(2) gap(2) gap(1) gap(2) ;
+    max-width: 300px;
+    .title{
+        font-size: 1em;
+        font-weight: bold;
+        margin: gap(0.5) ;
+    }
+    p{
+        margin: gap(1) 0;
+    }
+    .buttons_container{
+        display: flex;
+        margin-top: gap(2);
+        justify-content: flex-end;
+        .btn{
+            margin: gap(0.2);
+        }
+    }
+
+
+    @media (min-width: 600px)  {
+
+        .btn{
+            font-size: 0.8em;
+        }
+    }
+    @media (min-width: 1000px)  {
+        max-width: 400px;
+        font-size: 1.3em;
+        padding: gap(2);
+    }
+}
+
+
+
+form.create_box{
+    width: 95%;
+    margin-top: gap(3);
+    padding: gap(3) gap(1);
+    font-size: 0.7em;
+    input{
+        margin: gap(0.4) 0;
+        padding: gap(1);
+        border: 1px solid rgba(black, 0.3);
+        border-radius: 4px;
+    }
+    .btn{
+        font-size: 1.2em;
+    }
+
+    @media (min-width: 400px)  {
+        margin-top: gap(8);
+        max-width: 350px;
+
+    }
+}
+
+
+
+.generate_bill_meta{
+    text-align: center;
+    strong{
+        font-size: 1.5em;
+    }
+}
+
+.pagination_container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    .btn{
+        display: block;
+        margin: gap(2) auto gap(6) auto;
+        outline: none;
+
+
+        &.disable{
+            opacity: 0.3;
+            &:hover{
+                cursor: not-allowed;
+                background: $primary-color;
+            }
+        }
+
+
+        &::selection{
+            //background: none;
+        }
+    }
+}
+
+
+
+
+
+
+// ******* loading animation
+.lds-ellipsis {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 40px;
+}
+.lds-ellipsis div {
+    position: absolute;
+    top: 13px;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: $primary-color;
+    animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+.lds-ellipsis div:nth-child(1) {
+    left: 8px;
+    animation: lds-ellipsis1 0.4s infinite;
+}
+.lds-ellipsis div:nth-child(2) {
+    left: 8px;
+    animation: lds-ellipsis2 0.4s infinite;
+}
+.lds-ellipsis div:nth-child(3) {
+    left: 32px;
+    animation: lds-ellipsis2 0.4s infinite;
+}
+.lds-ellipsis div:nth-child(4) {
+    left: 56px;
+    animation: lds-ellipsis3 0.4s infinite;
+}
+@keyframes lds-ellipsis1 {
+    0% {
+        transform: scale(0);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+@keyframes lds-ellipsis3 {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(0);
+    }
+}
+@keyframes lds-ellipsis2 {
+    0% {
+        transform: translate(0, 0);
+    }
+    100% {
+        transform: translate(24px, 0);
+    }
+}
